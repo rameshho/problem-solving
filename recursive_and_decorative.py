@@ -1,6 +1,6 @@
 __author__ = 'rameshho'
 
-def check_datatype ( reverse_string s):
+def check_datatype ( reverse_string ):
     def my_reverse_string(string):
         if type(string) == str:
             return reverse_string(string)
