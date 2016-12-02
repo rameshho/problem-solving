@@ -1,0 +1,10 @@
+python -m robot.libdoc OperatingSystem OperatingSystem.html #To check built-in methods in operatingsystem library
+
+
+To give custom name to a library
+Below com.company.TestLib is converted to TestLib
+and you can give dynamic LIBRARY as well
+---------------------------------------
+Library    com.company.TestLib    WITH NAME    TestLib
+Library    ${LIBRARY}             WITH NAME    MyName
+
