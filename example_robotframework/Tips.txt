@@ -7,4 +7,34 @@ and you can give dynamic LIBRARY as well
 ---------------------------------------
 Library    com.company.TestLib    WITH NAME    TestLib
 Library    ${LIBRARY}             WITH NAME    MyName
+----------------------------------------------------
+
+same library can be imported several times with different arguments as follows:-
+-----------------------------------------------------------------------------------
+
+*** Settings ***
+Library    SomeLibrary    localhost        1234    WITH NAME    LocalLib
+Library    SomeLibrary    server.domain    8080    WITH NAME    RemoteLib
+
+*** Test Cases ***
+My Test
+    LocalLib.Some Keyword     some arg       second arg
+    RemoteLib.Some Keyword    another arg    whatever
+    LocalLib.Another Keyword
+----------------------------------------------------------------------------------------------------------------
+
+Standard libraries which comes with robotframework are as follows
+----------------------------------------------------
+BuiltIn
+Collections
+DateTime
+Dialogs
+OperatingSystem
+Process
+Screenshot
+String
+Telnet
+XML
+
+The BuiltIn library is special, because it is taken into use automatically and thus its keywords are always available. Other standard libraries need to be imported in the same way as any other libraries, but there is no need to install them.
 
