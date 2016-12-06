@@ -39,8 +39,14 @@ class UserDataBase(object):
         return (username in self.users and
             self.users[username].password == password)
 
-    def status_of_the_user(self, username, status):
-        return ( self.users[username].status == status )
+    def status_of_the_user(self, username, password, status):
+        try:
+            if not self._is_valid_user(username, password):
+                raise ValueError('User itself is not present')
+            else:
+                return self.users[username].status
+        except ValueError as err:
+            return err
 
     def change_password(self, username, old_pwd, new_pwd):
         try:
@@ -107,21 +113,6 @@ def create_user(username, password):
     with UserDataBase() as db:
         print(db.create_user(username, password))
 
-def User_status(username, password, status):
-    with UserDataBase() as db:
-        print("---------------------------------------------1")
-        if db._is_valid_user(username, password):
-            print("---------------------------------------------2")
-            if not db.status_of_the_user(username, status):
-                print("---------------------------------------------3")
-                print("My status is {}".format(status))
-                raise ValueError('Status is not {}'.format(status))
-        else:
-            raise ValueError('{} is invalid user'.format(username))
-
-def remove_file(database_file):
-    os.remove(database_file)
-
 def change_password(username, old_pwd, new_pwd):
     with UserDataBase() as db:
         print(db.change_password(username, old_pwd, new_pwd))
@@ -132,7 +123,7 @@ def help():
 
 if __name__ == '__main__':
     actions = {'create': create_user, 'login': login,
-                'change-password': change_password, 'contain': User_status, 'remove' : remove_file, 'help': help}
+                'change-password': change_password, 'help': help}
     try:
         action = sys.argv[1]
     except IndexError:
