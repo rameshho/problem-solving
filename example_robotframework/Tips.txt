@@ -38,3 +38,4 @@ XML
 
 The BuiltIn library is special, because it is taken into use automatically and thus its keywords are always available. Other standard libraries need to be imported in the same way as any other libraries, but there is no need to install them.
 
+Editor tool to edit keyword of robot framework can be found here :- https://github.com/robotframework/RIDE
